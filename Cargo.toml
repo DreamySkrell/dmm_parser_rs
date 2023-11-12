@@ -1,0 +1,18 @@
+[package]
+name = "dmm-parser-rs"
+version = "0.1.0"
+edition = "2021"
+
+build = "build.rs" # LALRPOP preprocessing
+
+[dependencies]
+lalrpop-util = { version = "0.19", features = ["lexer"] }
+diff = "0.1"
+itertools = "0.10.5"
+linked-hash-map = "0.5.6"
+grid = "0.10"
+rand = "^0.8"
+petgraph = "0.6.0"
+
+[build-dependencies]
+lalrpop = "0.19"
