@@ -12,6 +12,18 @@ pub struct Size {
     y: usize,
 }
 
+impl From<(usize, usize)> for Coord {
+    fn from(t: (usize, usize)) -> Self {
+        Self { x: t.0, y: t.1 }
+    }
+}
+
+impl From<(usize, usize)> for Size {
+    fn from(t: (usize, usize)) -> Self {
+        Self { x: t.0, y: t.1 }
+    }
+}
+
 pub fn extract(umm_src: &Umm, coord: Coord, size: Size) -> Umm {
     let mut umm_dst = Umm {
         comment: umm_src.comment.clone(),
