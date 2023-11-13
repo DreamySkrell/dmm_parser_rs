@@ -51,6 +51,7 @@ pub struct Dmm {
     pub rows: Vec<Row>,
 }
 
+#[derive(Debug, Clone)]
 pub struct Umm {
     pub comment: String,
     pub grid: Grid<Prototype>,
