@@ -15,6 +15,8 @@ pub fn print(dmm: &Dmm) -> String {
     // comment
     s.push_str(&format!("//{}{}", dmm.comment, newline()));
 
+    // TODO: sort atoms in prototypes, turf and area last (?)
+
     // prototypes
     for proto in &dmm.prototypes {
         s.push_str(&format!("\"{}\" = (", proto.id));
