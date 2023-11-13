@@ -63,12 +63,16 @@ use lalrpop_util::lalrpop_mod;
 lalrpop_mod!(pub parser, "/dmmr/parser.rs"); // synthesized by LALRPOP
 
 pub fn parse(dmm: &str) -> Dmm {
-    use crate::dmmr::lexer::Token;
     let tokens: Vec<(usize, Token, usize)> = lexer::lexe(dmm)
         .iter()
         .map(|(n, t)| (*n, t.clone(), 0))
         .collect();
-    parser::DmmParser::new().parse(tokens).unwrap()
+    let mut dmm = parser::DmmParser::new().parse(tokens).unwrap();
+    for row in &mut dmm.rows {
+        // reverse to match x and y in strongdmm
+        row.tiles.reverse()
+    }
+    dmm
 }
 
 pub fn print(dmm: &Dmm) -> String {

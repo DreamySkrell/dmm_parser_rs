@@ -121,7 +121,8 @@ pub fn print(dmm: &Dmm) -> String {
             row.coords[2],
             newline(),
         ));
-        for tile in &row.tiles {
+        for tile in row.tiles.iter().rev() {
+            // revert the reversion used to match x and y in strongdmm
             s.push_str(&format!("{}{}", tile, newline()));
         }
         s.push_str(&format!("\"}}{}", newline()));
