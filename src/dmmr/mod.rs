@@ -76,9 +76,11 @@ pub fn print(dmm: &Dmm) -> String {
 }
 
 pub fn unpack(dmm: &Dmm) -> Umm {
+    let rows = dmm.rows.len();
+    let cols = dmm.rows.first().unwrap().tiles.len();
     let mut umm = Umm {
         comment: dmm.comment.clone(),
-        grid: Grid::new(dmm.rows.len(), dmm.rows.first().unwrap().tiles.len()),
+        grid: Grid::new(rows, cols),
     };
 
     let mut prototypes = std::collections::HashMap::<String, Prototype>::new();
