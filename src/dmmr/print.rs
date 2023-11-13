@@ -2,7 +2,7 @@ use super::*;
 use itertools::Itertools;
 
 fn newline() -> &'static str {
-    "\r\n"
+    "\n"
 }
 
 fn tabchar() -> &'static str {
