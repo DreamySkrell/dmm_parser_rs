@@ -3,15 +3,10 @@ name = "dmm_parser_rs"
 version = "0.1.0"
 edition = "2021"
 
-build = "build.rs" # LALRPOP preprocessing
-
 [dependencies]
-lalrpop-util = { version = "0.19", features = ["lexer"] }
 diff = "0.1"
 itertools = "0.10.5"
 linked-hash-map = "0.5.6"
 grid = "0.10"
 rand = "^0.8"
-
-[build-dependencies]
-lalrpop = "0.19"
+dmmtools = { git = "https://github.com/SpaiR/SpacemanDMM", rev = "cef9528642461a97865cc0072647c1d8d505ad05", package = "dmm-tools" }

@@ -1,2 +1,2 @@
-pub mod copypaste;
-pub mod dmmr;
+pub mod core;
+pub mod tools;
