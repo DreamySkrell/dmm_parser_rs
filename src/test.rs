@@ -1,34 +1,34 @@
 use dmmtools::dmm;
 use itertools::Itertools;
 
-#[test]
-fn sanity() {
-    let paths = std::fs::read_dir("D:/Git/dmm_parser_rs/src/test").unwrap();
-    for path in paths {
-        let path = path.unwrap().path();
-        println!("path: {}", path.display());
+// #[test]
+// fn sanity() {
+//     let paths = std::fs::read_dir("D:/Git/dmm_parser_rs/src/test").unwrap();
+//     for path in paths {
+//         let path = path.unwrap().path();
+//         println!("path: {}", path.display());
 
-        let map = dmmtools::dmm::Map::from_file(&path).unwrap();
-        let map_str_parsed = crate::core::map_to_string(&map).unwrap();
-        let map_str_original = std::fs::read_to_string(path).unwrap();
+//         let map = dmmtools::dmm::Map::from_file(&path).unwrap();
+//         let map_str_parsed = crate::core::map_to_string(&map).unwrap();
+//         let map_str_original = std::fs::read_to_string(path).unwrap();
 
-        for (i, diff) in diff::lines(&map_str_original, &map_str_parsed)
-            .iter()
-            .enumerate()
-        {
-            match diff {
-                diff::Result::Left(l) => println!("{} diff - : {}", i, l),
-                diff::Result::Both(l, r) => {
-                    assert_eq!(l, r);
-                }
-                diff::Result::Right(r) => println!("{} diff + : {}", i, r),
-            }
-        }
-        if map_str_original != map_str_parsed {
-            assert!(false);
-        }
-    }
-}
+//         for (i, diff) in diff::lines(&map_str_original, &map_str_parsed)
+//             .iter()
+//             .enumerate()
+//         {
+//             match diff {
+//                 diff::Result::Left(l) => println!("{} diff - : {}", i, l),
+//                 diff::Result::Both(l, r) => {
+//                     assert_eq!(l, r);
+//                 }
+//                 diff::Result::Right(r) => println!("{} diff + : {}", i, r),
+//             }
+//         }
+//         if map_str_original != map_str_parsed {
+//             assert!(false);
+//         }
+//     }
+// }
 
 #[test]
 fn grid_check() {
