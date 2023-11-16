@@ -53,15 +53,6 @@ pub fn to_dict_map(grid_map: &crate::GridMap) -> dmm::Map {
         for y in 1..(grid_map.size.y + 1) {
             let coord = Coord2::new(x, y);
             if let Some(tile) = grid_map.grid.get(&coord) {
-                // if dict_map.dictionary.contains_key(&tile.key_suggestion) {
-                //     if *dict_map.dictionary.get(&tile.key_suggestion).unwrap() == tile.prefabs {}
-                // } else {
-                //     dict_map
-                //         .dictionary
-                //         .insert(tile.key_suggestion, tile.prefabs.clone());
-                //     dict_map.grid[coord3_to_index(coord.z(1), grid_map.size)] =
-                //         tile.key_suggestion.clone();
-                // }
                 let key = dictionary_reverse.get(&tile.prefabs).unwrap().clone();
                 dict_map.dictionary.insert(key, tile.prefabs.clone());
                 dict_map.grid[coord3_to_index(coord.z(1), grid_map.size)] = key;
@@ -71,6 +62,6 @@ pub fn to_dict_map(grid_map: &crate::GridMap) -> dmm::Map {
         }
     }
 
-    dict_map.adjust_key_length();
+    dict_map.set_key_length(3);
     dict_map
 }

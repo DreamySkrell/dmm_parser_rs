@@ -9,4 +9,4 @@ itertools = "0.10.5"
 linked-hash-map = "0.5.6"
 grid = "0.10"
 rand = "^0.8"
-dmmtools = { git = "https://github.com/DreamySkrell/SpacemanDMM", rev = "058c1e0d253ae78443e8911ffc9249346872b48d", package = "dmm-tools" }
+dmmtools = { git = "https://github.com/DreamySkrell/SpacemanDMM", rev = "a1e0cf98a303ba037ec9778b427690ebd566148c", package = "dmm-tools" }
