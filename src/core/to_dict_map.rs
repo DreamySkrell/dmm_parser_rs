@@ -1,6 +1,6 @@
-use std::collections::{BTreeMap, BTreeSet, HashMap};
-
 use dmmtools::dmm::{self, Coord2};
+use fxhash::FxHashMap;
+use std::collections::BTreeSet;
 
 fn coord3_to_index(coord: dmm::Coord3, size: dmm::Coord3) -> (usize, usize, usize) {
     (
@@ -16,8 +16,6 @@ fn int_to_key(i: u16) -> dmm::Key {
 }
 
 pub fn to_dict_map(grid_map: &crate::GridMap) -> dmm::Map {
-    let mut grid_map = grid_map.clone();
-
     let mut dict_map = dmm::Map::new(
         grid_map.size.x as usize,
         grid_map.size.y as usize,
@@ -29,11 +27,10 @@ pub fn to_dict_map(grid_map: &crate::GridMap) -> dmm::Map {
 
     let mut used_dict_keys = BTreeSet::<dmm::Key>::new();
 
-    let mut dictionary_reverse = HashMap::<Vec<dmm::Prefab>, dmm::Key>::new();
-    for tile in grid_map.grid.values_mut() {
-        if dictionary_reverse.contains_key(&tile.prefabs) {
-            tile.key_suggestion = dictionary_reverse.get(&tile.prefabs).unwrap().clone();
-        } else {
+    let mut dictionary_reverse = FxHashMap::<Vec<dmm::Prefab>, dmm::Key>::default();
+
+    for tile in grid_map.grid.values() {
+        if !dictionary_reverse.contains_key(&tile.prefabs) {
             if used_dict_keys.contains(&tile.key_suggestion) {
                 let next_free_key = (0..65534)
                     .map(int_to_key)
