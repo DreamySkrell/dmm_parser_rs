@@ -1,4 +1,4 @@
-// pub fn insert(umm_src: &Umm, umm_dst: &mut Umm, coord: Coord) {
+// pub fn insert_sub_map(umm_src: &Umm, umm_dst: &mut Umm, coord: Coord) {
 //     let size = Size {
 //         x: umm_src.grid.size().0,
 //         y: umm_src.grid.size().1,

@@ -2,6 +2,10 @@
 "a" = (
 /turf/simulated/floor/marble,
 /area/space)
+"b" = (
+/obj/random/mre,
+/turf/simulated/floor/shuttle,
+/area/space)
 "f" = (
 /obj/random/energy,
 /turf/simulated/wall,
@@ -15,6 +19,14 @@
 /obj/random/action_figure,
 /turf/simulated/floor/lino/diamond,
 /area/space)
+"n" = (
+/obj/random/mre,
+/turf/simulated/floor/marble,
+/area/space)
+"o" = (
+/obj/random/mre,
+/turf/simulated/wall,
+/area/space)
 "p" = (
 /obj/random/handgun,
 /turf/simulated/floor/marble,
@@ -22,6 +34,11 @@
 "q" = (
 /obj/random/action_figure,
 /turf/simulated/floor/shuttle,
+/area/space)
+"r" = (
+/obj/random/action_figure,
+/obj/aiming_overlay,
+/turf/simulated/floor/lino/diamond,
 /area/space)
 "s" = (
 /obj/random/action_figure,
@@ -59,6 +76,18 @@
 "J" = (
 /obj/random/chameleon,
 /turf/simulated/floor/shuttle,
+/area/space)
+"Q" = (
+/obj/aiming_overlay,
+/turf/simulated/floor/marble,
+/area/space)
+"S" = (
+/obj/aiming_overlay,
+/turf/simulated/floor/lino/diamond,
+/area/space)
+"U" = (
+/obj/random/mre,
+/turf/simulated/floor/lino/diamond,
 /area/space)
 "W" = (
 /obj/random/chameleon,
@@ -113,7 +142,7 @@ B
 B
 B
 B
-a
+Q
 a
 a
 a
@@ -130,7 +159,7 @@ B
 B
 a
 a
-a
+Q
 B
 B
 B
@@ -147,7 +176,7 @@ B
 s
 Y
 B
-B
+S
 B
 B
 B
@@ -164,7 +193,7 @@ s
 s
 Y
 s
-B
+S
 s
 B
 B
@@ -181,7 +210,7 @@ B
 B
 a
 B
-s
+r
 s
 k
 k
@@ -198,7 +227,7 @@ W
 a
 a
 B
-B
+S
 B
 B
 k
@@ -210,21 +239,21 @@ F
 a
 "}
 (9,1,1) = {"
-E
+o
 W
-a
-B
-B
-B
-B
-B
-B
+n
+U
+U
+S
+U
+U
+U
 s
 k
-B
-F
-B
-a
+U
+b
+U
+n
 "}
 (10,1,1) = {"
 E

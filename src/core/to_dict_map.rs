@@ -1,4 +1,4 @@
-use dmmtools::dmm::{self};
+use dmmtools::dmm::{self, Coord2};
 
 fn coord3_to_index(coord: dmm::Coord3, size: dmm::Coord3) -> (usize, usize, usize) {
     (
@@ -18,11 +18,21 @@ pub fn to_dict_map(grid_map: &crate::GridMap) -> dmm::Map {
     );
     dict_map.dictionary.clear();
 
-    for (coord, tile) in &grid_map.grid {
-        dict_map
-            .dictionary
-            .insert(tile.key_suggestion, tile.prefabs.clone());
-        dict_map.grid[coord3_to_index(coord.z(1), grid_map.size)] = tile.key_suggestion.clone();
+    // let mut free_dict_keys = {};
+
+    for x in 1..(grid_map.size.x + 1) {
+        for y in 1..(grid_map.size.y + 1) {
+            let coord = Coord2::new(x, y);
+            if let Some(tile) = grid_map.grid.get(&coord) {
+                dict_map
+                    .dictionary
+                    .insert(tile.key_suggestion, tile.prefabs.clone());
+                dict_map.grid[coord3_to_index(coord.z(1), grid_map.size)] =
+                    tile.key_suggestion.clone();
+            } else {
+                panic!();
+            }
+        }
     }
 
     dict_map.adjust_key_length();
