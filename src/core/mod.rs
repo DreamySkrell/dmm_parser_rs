@@ -7,11 +7,17 @@ pub use to_dict_map::to_dict_map;
 pub mod to_grid_map;
 pub use to_grid_map::to_grid_map;
 
-// pub mod from_grid_map;
-// pub use from_grid_map::from_grid_map;
-
 pub mod map_to_string;
 pub use map_to_string::map_to_string;
+
+///
+#[derive(Clone, Debug)]
+pub struct Tile {
+    ///
+    pub key_suggestion: dmm::Key,
+    ///
+    pub prefabs: Vec<dmm::Prefab>,
+}
 
 /// Kinda analogous to `dmmtools::dmm::Map`, but instead of being structured like dmm maps are,
 /// where they have a dictionary of keys-to-prefabs and a separate grid of keys,
@@ -25,10 +31,8 @@ pub struct GridMap {
     pub grid: BTreeMap<dmm::Coord2, crate::core::Tile>,
 }
 
-#[derive(Clone, Debug)]
-pub struct Tile {
-    ///
-    pub key_suggestion: dmm::Key,
-    ///
-    pub prefabs: Vec<dmm::Prefab>,
+impl GridMap {
+    pub fn from_file(path: &std::path::Path) -> Option<GridMap> {
+        Some(crate::core::to_grid_map(&dmm::Map::from_file(&path).ok()?))
+    }
 }

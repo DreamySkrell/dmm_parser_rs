@@ -1,9 +1,9 @@
 use crate::core::GridMap;
-use crate::core::Tile;
 use dmmtools::dmm;
 use dmmtools::dmm::Coord2;
 use std::collections::BTreeMap;
 
+/// Takes part of map of `xtr_size` and at `xtr_coord` from `src_map`.
 pub fn extract_sub_map(
     src_map: &GridMap,
     xtr_coord: dmm::Coord2,

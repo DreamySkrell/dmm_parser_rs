@@ -13,42 +13,12 @@ fn print_diff(left: &str, right: &str) {
     }
 }
 
-// #[test]
-// fn sanity() {
-//     let paths = std::fs::read_dir("D:/Git/dmm_parser_rs/src/test").unwrap();
-//     for path in paths {
-//         let path = path.unwrap().path();
-//         println!("path: {}", path.display());
-
-//         let map = dmmtools::dmm::Map::from_file(&path).unwrap();
-//         let map_str_parsed = crate::core::map_to_string(&map).unwrap();
-//         let map_str_original = std::fs::read_to_string(path).unwrap();
-
-//         for (i, diff) in diff::lines(&map_str_original, &map_str_parsed)
-//             .iter()
-//             .enumerate()
-//         {
-//             match diff {
-//                 diff::Result::Left(l) => println!("{} diff - : {}", i, l),
-//                 diff::Result::Both(l, r) => {
-//                     assert_eq!(l, r);
-//                 }
-//                 diff::Result::Right(r) => println!("{} diff + : {}", i, r),
-//             }
-//         }
-//         if map_str_original != map_str_parsed {
-//             assert!(false);
-//         }
-//     }
-// }
-
 #[test]
 fn grid_check() {
     let path = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/_tiny_test_map.dmm");
     println!("path: {}", path.display());
 
-    let dict_map_original = dmmtools::dmm::Map::from_file(&path).unwrap();
-    let grid_map = crate::core::to_grid_map(&dict_map_original);
+    let grid_map = crate::core::GridMap::from_file(&path).unwrap();
     assert!(grid_map.grid[&dmm::Coord2::new(2, 1)]
         .prefabs
         .iter()
@@ -124,6 +94,29 @@ fn extract() {
 }
 
 #[test]
+fn insert() {
+    let path_xtr = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/extracted.dmm");
+    let path_dst = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/_tiny_test_map.dmm");
+    let path_dst_expected = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/inserted.dmm");
+
+    let grid_map_dst_expected = crate::core::GridMap::from_file(&path_dst_expected).unwrap();
+    let grid_map_xtr = crate::core::GridMap::from_file(&path_xtr).unwrap();
+    let mut grid_map_dst = crate::core::GridMap::from_file(&path_dst).unwrap();
+    crate::tools::insert_sub_map(&grid_map_xtr, Coord2::new(6, 4), &mut grid_map_dst);
+
+    assert_eq!(
+        grid_map_dst_expected.grid.keys().collect::<Vec<_>>(),
+        grid_map_dst.grid.keys().collect::<Vec<_>>(),
+    );
+
+    for key in grid_map_dst_expected.grid.keys() {
+        let tile_dst_expected = grid_map_dst_expected.grid.get(key).unwrap();
+        let tile_dst = grid_map_dst.grid.get(key).unwrap();
+        assert_eq!(tile_dst_expected.prefabs, tile_dst.prefabs);
+    }
+}
+
+#[test]
 fn keys_deduplicated() {
     // make sure that if multiple tiles have the same key_suggestion
     // they get assigned different keys
@@ -144,4 +137,6 @@ fn keys_deduplicated() {
         let tile_out = grid_map_out.grid.get(key).unwrap();
         assert_eq!(tile_src.prefabs, tile_out.prefabs);
     }
+
+    assert_eq!(dict_map_src.dictionary.len(), dict_map_out.dictionary.len())
 }
