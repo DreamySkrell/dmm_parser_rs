@@ -1,8 +1,6 @@
 use crate::core::GridMap;
-use crate::core::Tile;
 use dmmtools::dmm;
 use dmmtools::dmm::Coord2;
-use std::collections::BTreeMap;
 
 /// Takes `xtr_map` and puts it at `coord` in `dst_map`.
 pub fn insert_sub_map(xtr_map: &GridMap, coord: dmm::Coord2, dst_map: &mut GridMap) {
