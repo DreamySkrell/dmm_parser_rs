@@ -1,7 +1,3 @@
-pub use dmmtools;
-
-pub use dmmtools::dmm;
-
 pub mod to_dict_map;
 pub use to_dict_map::to_dict_map;
 pub mod to_grid_map;
@@ -9,6 +5,8 @@ pub use to_grid_map::to_grid_map;
 
 pub mod map_to_string;
 pub use map_to_string::map_to_string;
+
+use dmmtools::dmm;
 
 ///
 #[derive(Clone, Debug)]

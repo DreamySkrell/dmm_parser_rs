@@ -1,3 +1,6 @@
+/// re-export from spacemandmm
+pub use dmmtools;
+
 pub mod core;
 pub mod tools;
 
