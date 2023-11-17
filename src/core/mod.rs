@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+pub use dmmtools;
 
 pub use dmmtools::dmm;
 
@@ -28,7 +28,7 @@ pub struct GridMap {
     ///
     pub size: dmm::Coord3,
     ///
-    pub grid: BTreeMap<dmm::Coord2, crate::core::Tile>,
+    pub grid: std::collections::BTreeMap<dmm::Coord2, crate::core::Tile>,
 }
 
 impl GridMap {
