@@ -15,10 +15,6 @@ fn int_to_key(i: u16) -> dmm::Key {
     unsafe { std::mem::transmute::<u16, dmm::Key>(i) }
 }
 
-fn key_to_int(k: dmm::Key) -> u16 {
-    unsafe { std::mem::transmute::<dmm::Key, u16>(k) }
-}
-
 pub fn to_dict_map(grid_map: &crate::GridMap) -> dmm::Map {
     let mut dict_map = dmm::Map::new(
         grid_map.size.x as usize,
@@ -63,15 +59,7 @@ pub fn to_dict_map(grid_map: &crate::GridMap) -> dmm::Map {
         }
     }
 
-    let max_key = key_to_int(used_dict_keys.iter().max().unwrap().clone());
-    let new_key_length = if max_key > 2704 {
-        3
-    } else if max_key > 52 {
-        2
-    } else {
-        1
-    };
-    dict_map.set_key_length(new_key_length);
+    dict_map.adjust_key_length();
 
     dict_map
 }

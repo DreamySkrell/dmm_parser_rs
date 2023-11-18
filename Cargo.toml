@@ -10,4 +10,4 @@ linked-hash-map = "0.5.6"
 fxhash = "0.2.1"
 grid = "0.10"
 rand = "^0.8"
-dmmtools = { git = "https://github.com/DreamySkrell/SpacemanDMM", rev = "a1e0cf98a303ba037ec9778b427690ebd566148c", package = "dmm-tools" }
+dmmtools = { git = "https://github.com/DreamySkrell/SpacemanDMM", rev = "79bb5ba497cfec7f0e8dbd6992bae20002d11d0e", package = "dmm-tools" }
