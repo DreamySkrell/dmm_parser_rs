@@ -15,7 +15,7 @@ fn print_diff(left: &str, right: &str) {
 
 #[test]
 fn grid_check() {
-    let path = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/_tiny_test_map.dmm");
+    let path = std::path::Path::new("D:/Git/dmm_parser_rs/test/_tiny_test_map.dmm");
     println!("path: {}", path.display());
 
     let grid_map = crate::core::GridMap::from_file(&path).unwrap();
@@ -39,7 +39,7 @@ fn grid_check() {
 
 #[test]
 fn to_grid_and_back() {
-    let paths = std::fs::read_dir("D:/Git/dmm_parser_rs/src/test").unwrap();
+    let paths = std::fs::read_dir("D:/Git/dmm_parser_rs/test").unwrap();
     for path in paths.map(|r| r.unwrap().path()).sorted() {
         println!("path: {}", path.display());
 
@@ -51,7 +51,7 @@ fn to_grid_and_back() {
 
         dict_map_again
             .to_file(
-                &std::path::Path::new("D:/Git/dmm_parser_rs/src/test-out")
+                &std::path::Path::new("D:/Git/dmm_parser_rs/test-out")
                     .join(path.file_name().unwrap()),
             )
             .unwrap();
@@ -66,9 +66,9 @@ fn to_grid_and_back() {
 
 #[test]
 fn extract() {
-    let path_src = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/_tiny_test_map.dmm");
-    let path_xtr = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/extracted.dmm");
-    let path_xtr_out = std::path::Path::new("D:/Git/dmm_parser_rs/src/test-out/extracted_out.dmm");
+    let path_src = std::path::Path::new("D:/Git/dmm_parser_rs/test/_tiny_test_map.dmm");
+    let path_xtr = std::path::Path::new("D:/Git/dmm_parser_rs/test/extracted.dmm");
+    let path_xtr_out = std::path::Path::new("D:/Git/dmm_parser_rs/test-out/extracted_out.dmm");
 
     let dict_map_src = dmmtools::dmm::Map::from_file(&path_src).unwrap();
     let dict_map_xtr_expected = dmmtools::dmm::Map::from_file(&path_xtr).unwrap();
@@ -95,9 +95,9 @@ fn extract() {
 
 #[test]
 fn insert() {
-    let path_xtr = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/extracted.dmm");
-    let path_dst = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/_tiny_test_map.dmm");
-    let path_dst_expected = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/inserted.dmm");
+    let path_xtr = std::path::Path::new("D:/Git/dmm_parser_rs/test/extracted.dmm");
+    let path_dst = std::path::Path::new("D:/Git/dmm_parser_rs/test/_tiny_test_map.dmm");
+    let path_dst_expected = std::path::Path::new("D:/Git/dmm_parser_rs/test/inserted.dmm");
 
     let grid_map_dst_expected = crate::core::GridMap::from_file(&path_dst_expected).unwrap();
     let grid_map_xtr = crate::core::GridMap::from_file(&path_xtr).unwrap();
@@ -121,7 +121,7 @@ fn keys_deduplicated() {
     // make sure that if multiple tiles have the same key_suggestion
     // they get assigned different keys
 
-    let path_src = std::path::Path::new("D:/Git/dmm_parser_rs/src/test/_tiny_test_map.dmm");
+    let path_src = std::path::Path::new("D:/Git/dmm_parser_rs/test/_tiny_test_map.dmm");
     let dict_map_src = dmmtools::dmm::Map::from_file(&path_src).unwrap();
     let grid_map_src = crate::core::to_grid_map(&dict_map_src);
 
