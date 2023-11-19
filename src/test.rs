@@ -13,6 +13,15 @@ fn print_diff(left: &str, right: &str) {
     }
 }
 
+fn all_test_dmm() -> Vec<std::path::PathBuf> {
+    std::fs::read_dir("D:/Git/dmm_parser_rs/test")
+        .unwrap()
+        .map(|r| r.unwrap().path())
+        .filter(|p| p.extension().unwrap() == "dmm")
+        .sorted()
+        .collect_vec()
+}
+
 #[test]
 fn grid_check() {
     let path = std::path::Path::new("D:/Git/dmm_parser_rs/test/_tiny_test_map.dmm");
@@ -39,8 +48,7 @@ fn grid_check() {
 
 #[test]
 fn to_grid_and_back() {
-    let paths = std::fs::read_dir("D:/Git/dmm_parser_rs/test").unwrap();
-    for path in paths.map(|r| r.unwrap().path()).sorted() {
+    for path in all_test_dmm() {
         println!("path: {}", path.display());
 
         let dict_map_original = dmmtools::dmm::Map::from_file(&path).unwrap();
